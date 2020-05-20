@@ -31,7 +31,7 @@ used in the library, also configures the debugging messages.
  * @{
  */
 #define LIQUIDMENU_LIBRARY LiquidCrystal_LIBRARY
-#include <LiquidCrystal.h>
+#include "../../LiquidCrystal/src/LiquidCrystal.h"
 #define DisplayClass LiquidCrystal
 //!@}
 
@@ -64,7 +64,7 @@ const uint8_t MAX_VARIABLES = 5; ///< @note Default: 5
 const uint8_t MAX_FUNCTIONS = 8; ///< @note Default: 8
 
 /// Configures the number of available lines per screen.
-const uint8_t MAX_LINES = 12; ///< @note Default: 12
+const uint8_t MAX_LINES = 24; ///< @note Default: 12
 
 /// Configures the number of available screens per menu.
 const uint8_t MAX_SCREENS = 14; ///< @note Default: 14
