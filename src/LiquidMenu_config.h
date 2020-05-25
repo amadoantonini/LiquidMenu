@@ -61,7 +61,7 @@ used in the library, also configures the debugging messages.
 const uint8_t MAX_VARIABLES = 5; ///< @note Default: 5
 
 /// Configures the number of available functions per line.
-const uint8_t MAX_FUNCTIONS = 8; ///< @note Default: 8
+const uint8_t MAX_FUNCTIONS = 2; ///< @note Default: 8
 
 /// Configures the number of available lines per screen.
 const uint8_t MAX_LINES = 24; ///< @note Default: 12
@@ -70,7 +70,7 @@ const uint8_t MAX_LINES = 24; ///< @note Default: 12
 const uint8_t MAX_SCREENS = 14; ///< @note Default: 14
 
 /// Configures the number of available menus per menus system.
-const uint8_t MAX_MENUS = 8; ///< @note Default: 8
+const uint8_t MAX_MENUS = 2; ///< @note Default: 8
 
 // Turns the debugging messages on or off.
 #define LIQUIDMENU_DEBUG false ///< @note Default: false
