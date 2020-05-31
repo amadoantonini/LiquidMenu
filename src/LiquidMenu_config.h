@@ -30,9 +30,9 @@ used in the library, also configures the debugging messages.
  * @name Arduino's parallel "LiquidCrystal" library
  * @{
  */
-#define LIQUIDMENU_LIBRARY LiquidCrystal_LIBRARY
-#include "../../LiquidCrystal/src/LiquidCrystal.h"
-#define DisplayClass LiquidCrystal
+//#define LIQUIDMENU_LIBRARY LiquidCrystal_LIBRARY
+//#include "../../LiquidCrystal/src/LiquidCrystal.h"
+//#define DisplayClass LiquidCrystal
 //!@}
 
 /*!
@@ -49,8 +49,8 @@ used in the library, also configures the debugging messages.
  * @name Some other library
  * @{
  */
-// #include <LIBRARY_HEADER.h>
-// #define DisplayClass LIBRARY_CONSTRUCTOR
+#include "../../../FastLiquidCrystal.h"
+#define DisplayClass FastLiquidCrystal
 //!@}
 //!@}
 
@@ -64,13 +64,13 @@ const uint8_t MAX_VARIABLES = 5; ///< @note Default: 5
 const uint8_t MAX_FUNCTIONS = 8; ///< @note Default: 8
 
 /// Configures the number of available lines per screen.
-const uint8_t MAX_LINES = 24; ///< @note Default: 12
+const uint8_t MAX_LINES = 12; ///< @note Default: 12
 
 /// Configures the number of available screens per menu.
 const uint8_t MAX_SCREENS = 14; ///< @note Default: 14
 
 /// Configures the number of available menus per menus system.
-const uint8_t MAX_MENUS = 8; ///< @note Default: 8
+const uint8_t MAX_MENUS = 1; ///< @note Default: 8
 
 // Turns the debugging messages on or off.
 #define LIQUIDMENU_DEBUG false ///< @note Default: false
