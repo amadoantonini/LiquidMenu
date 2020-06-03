@@ -76,7 +76,7 @@ bool LiquidLine::set_focusPosition(Position position, uint8_t column, uint8_t ro
 
 bool LiquidLine::set_asGlyph(uint8_t number) {
 	uint8_t index = number - 1;
-	if ( (index < MAX_VARIABLES) && (_variableType[index] == DataType::UINT8_T) ) {
+	if ( (index < _num_variables) && (_variableType[index] == DataType::UINT8_T) ) {
 		_variableType[index] = DataType::GLYPH;
 		return true;
 	} else {
@@ -88,7 +88,7 @@ bool LiquidLine::set_asGlyph(uint8_t number) {
 
 bool LiquidLine::set_asProgmem(uint8_t number) {
 	uint8_t index = number - 1;
-	if ((index < MAX_VARIABLES) && (_variableType[index] == DataType::CONST_CHAR_PTR)) {
+	if ((index < _num_variables) && (_variableType[index] == DataType::CONST_CHAR_PTR)) {
 		_variableType[index] = DataType::PROG_CONST_CHAR_PTR;
 		return true;
 	}
@@ -104,7 +104,7 @@ void LiquidLine::print(DisplayClass *p_liquidCrystal, bool isFocused) {
 	DEBUG(F(" (")); DEBUG(_column); DEBUG(F(", ")); DEBUG(_row); DEBUGLN(F(")"));
 
 	DEBUG(F("|\t"));
-	for (uint8_t v = 0; v < MAX_VARIABLES; v++) {
+	for (uint8_t v = 0; v < _num_variables; v++) {
 		print_variable(p_liquidCrystal, v);
 	}
 	DEBUGLN();

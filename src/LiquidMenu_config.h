@@ -58,7 +58,7 @@ used in the library, also configures the debugging messages.
 
 
 /// Configures the number of available variables per line.
-const uint8_t MAX_VARIABLES = 4; ///< @note Default: 5
+//const uint8_t MAX_VARIABLES = 4; ///< @note Default: 5
 
 /// Configures the number of available functions per line.
 const uint8_t MAX_FUNCTIONS = 1; ///< @note Default: 8

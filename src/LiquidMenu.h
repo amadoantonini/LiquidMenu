@@ -316,11 +316,13 @@ public:
   @param column - the column at which the line starts
   @param row - the row at which the line is printed
   */
-  LiquidLine(uint8_t column, uint8_t row)
+  LiquidLine(size_t N, uint8_t column, uint8_t row)
     : _row(row), _column(column), _focusRow(row - 1),
       _focusColumn(column - 1), _focusPosition(Position::NORMAL),
-      _variableCount(0), _focusable(false) {
-    for (uint8_t i = 0; i < MAX_VARIABLES; i++) {
+      _variableCount(0), _num_variables(N), _focusable(false) {
+    _variable = new void*[_num_variables];
+    _variableType = new DataType[_num_variables];
+    for (uint8_t i = 0; i < _num_variables; i++) {
       _variable[i] = nullptr;
       _variableType[i] = DataType::NOT_USED;
     }
@@ -337,8 +339,8 @@ public:
   @param &variableA - variable/constant to be printed
   */
   template <typename A>
-  LiquidLine(uint8_t column, uint8_t row, A &variableA)
-    : LiquidLine(column, row) {
+  LiquidLine(size_t N, uint8_t column, uint8_t row, A &variableA)
+    : LiquidLine(N, column, row) {
     add_variable(variableA);
   }
 
@@ -350,9 +352,9 @@ public:
   @param &variableB - variable/constant to be printed
   */
   template <typename A, typename B>
-  LiquidLine(uint8_t column, uint8_t row,
+  LiquidLine(size_t N, uint8_t column, uint8_t row,
              A &variableA, B &variableB)
-    : LiquidLine(column, row, variableA) {
+    : LiquidLine(N, column, row, variableA) {
     add_variable(variableB);
   }
 
@@ -365,9 +367,9 @@ public:
   @param &variableC - variable/constant to be printed
   */
   template <typename A, typename B, typename C>
-  LiquidLine(uint8_t column, uint8_t row,
+  LiquidLine(size_t N, uint8_t column, uint8_t row,
              A &variableA, B &variableB, C &variableC)
-    : LiquidLine(column, row, variableA, variableB) {
+    : LiquidLine(N, column, row, variableA, variableB) {
     add_variable(variableC);
   }
 
@@ -381,9 +383,9 @@ public:
   @param &variableD - variable/constant to be printed
   */
   template <typename A, typename B, typename C, typename D>
-  LiquidLine(uint8_t column, uint8_t row,
+  LiquidLine(size_t N, uint8_t column, uint8_t row,
              A &variableA, B &variableB, C &variableC, D &variableD)
-    : LiquidLine(column, row, variableA, variableB, variableC) {
+    : LiquidLine(N, column, row, variableA, variableB, variableC) {
     add_variable(variableD);
   }
 
@@ -408,7 +410,7 @@ public:
   template <typename T>
   bool add_variable(T &variable) {
     print_me(reinterpret_cast<uintptr_t>(this));
-    if (_variableCount < MAX_VARIABLES) {
+    if (_variableCount < _num_variables) {
       _variable[_variableCount] = (void*)&variable;
       _variableType[_variableCount] = recognizeType(variable);
 #     if LIQUIDMENU_DEBUG
@@ -555,8 +557,9 @@ private:
   uint8_t _floatDecimalPlaces;
   uint8_t _variableCount; ///< Count of the variables
   void (*_function[MAX_FUNCTIONS])(void); ///< Pointers to the functions
-  const void *_variable[MAX_VARIABLES]; ///< Pointers to the variables
-  DataType _variableType[MAX_VARIABLES]; ///< Data type of the variables
+  const void **_variable; ///< Pointers to the variables
+  size_t _num_variables;
+  DataType* _variableType; ///< Data type of the variables
   bool _focusable; ///< Determines whether the line is focusable
 };
 
